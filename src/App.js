@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import './App.css';
 import { helloWorldTest, uploadFile, ReturnFile } from "./services/imageservice";
-import { saveAs } from 'file-saver';
+// import { saveAs } from 'file-saver';
 
 class App extends Component {
 
@@ -85,7 +85,7 @@ class App extends Component {
             {this.state.selectedFile.lastModifiedDate.toDateString()}
           </p>
           <div>
-            <img src={`${this.state.imageFile}`} />
+            <img src={`${this.state.imageFile}`} alt="sample image" />
           </div>
         </div>
       );
