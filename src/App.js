@@ -103,7 +103,7 @@ class App extends Component {
 
     return (
       <div>
-        <h1>GeeksforGeeks </h1>
+        <h1>UM D-LAB WEB PORTAL </h1>
         <h3> File Upload using React! </h3>
         <div>
           <input type="file" onChange={this.onFileChange} />
