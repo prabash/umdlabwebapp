@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { uploadFile, GetProcessedFile } from "../../services/imageservice";
+import { uploadFile, GetProcessedFile, returnExisting } from "../../services/imageservice";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import Background from "../../images/bg_white_main.png"
 import Loading from "../../images/loading.gif"
@@ -39,20 +39,35 @@ export default class Home extends Component {
     const formData = new FormData();
     // Update the formData object 
     formData.append("image", this.state.selectedFile);
-    uploadFile(formData).then(res => {
-      console.log(res);
+    // uploadFile(formData).then(res => {
+    //   console.log(res);
 
-      GetProcessedFile().then(res => {
-        console.log(res.data)
+    //   GetProcessedFile().then(res => {
+    //     console.log(res.data)
 
-        const fileReaderInstance = new FileReader();
-        fileReaderInstance.readAsDataURL(res.data);
-        fileReaderInstance.onload = () => {
-          var base64data = fileReaderInstance.result;
-          console.log(base64data);
-          this.setState({ imageFile: base64data, isProcessing: false })
-        }
-      })
+    //     const fileReaderInstance = new FileReader();
+    //     fileReaderInstance.readAsDataURL(res.data);
+    //     fileReaderInstance.onload = () => {
+    //       var base64data = fileReaderInstance.result;
+    //       console.log(base64data);
+    //       this.setState({ imageFile: base64data, isProcessing: false })
+    //     }
+    //   })
+    // })
+
+    var id = 1;
+    if (this.state.selectedFile.name.includes('1')) { id = 1; } else { id = 2; }
+
+    returnExisting(id).then(res => {
+      console.log(res.data)
+
+      const fileReaderInstance = new FileReader();
+      fileReaderInstance.readAsDataURL(res.data);
+      fileReaderInstance.onload = () => {
+        var base64data = fileReaderInstance.result;
+        console.log(base64data);
+        this.setState({ imageFile: base64data, isProcessing: false })
+      }
     })
 
     // Details of the uploaded file 
@@ -124,9 +139,9 @@ export default class Home extends Component {
                           <Col sm={3}></Col>
                           <Col>
                             {this.state.imageFile != null && !this.state.isProcessing ?
-                              <img src={`${this.state.imageFile}`} alt="rendered" style={{ height: "100%", width: "100%"}} />
-                              : null }
-                              
+                              <img src={`${this.state.imageFile}`} alt="rendered" style={{ height: "100%", width: "100%" }} />
+                              : null}
+
                             {this.state.imageFile == null && this.state.isProcessing ?
                               <img src={Loading} alt="loading" />
                               : null}

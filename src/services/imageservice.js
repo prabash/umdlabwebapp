@@ -1,7 +1,7 @@
 import axios from "axios";
 
-let baseURL = `http://localhost:5000`;
-//let baseURL = `https://umdlabtestapi.herokuapp.com`;
+//let baseURL = `http://localhost:5000`;
+let baseURL = `https://umdlabtestapi.herokuapp.com`;
 
 export const helloWorldTest = (name) => {
     const URL = baseURL + `/helloworld/${name}`;
@@ -10,7 +10,15 @@ export const helloWorldTest = (name) => {
 
 export const uploadFile = (image) => {
     const URL = baseURL + `/uploadimage/`;
-    return axios.post(URL, image, {timeout : 100000});
+    return axios.post(URL, image, { timeout: 100000 });
+}
+
+export const returnExisting = (id) => {
+    const URL = baseURL + `/returnexisting/${id}`;
+    return axios.get(URL, {
+        responseType: 'blob',
+        timeout: 30000
+    }).then(res => res);
 }
 
 export const GetProcessedFile = () => {
