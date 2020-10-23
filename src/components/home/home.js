@@ -37,8 +37,9 @@ export default class Home extends Component {
     })
     // Create an object of formData 
     const formData = new FormData();
-    // Update the formData object 
-    formData.append("image", this.state.selectedFile);
+
+    //Update the formData object 
+    // formData.append("image", this.state.selectedFile);
     // uploadFile(formData).then(res => {
     //   console.log(res);
 

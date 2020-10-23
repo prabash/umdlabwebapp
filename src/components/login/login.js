@@ -11,7 +11,7 @@ var sectionStyle = {
 
 export default class Login extends Component {
     componentDidMount() {
-        document.title = "DynoSchedule : Login";
+        document.title = "D-Lab Med Portal : Login";
     }
     render() {
         return (
